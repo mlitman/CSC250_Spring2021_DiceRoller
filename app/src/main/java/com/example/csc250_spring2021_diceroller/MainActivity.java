@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity
     private TextView qtyTV;
     private TextView selectedDieTV;
     private String currentQtyText;
+    private TextView rollsTV;
+    private TextView totalTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         this.qtyTV = this.findViewById(R.id.qtyTV);
         this.selectedDieTV = this.findViewById(R.id.selectedDieTV);
+        this.rollsTV = this.findViewById(R.id.rollsTV);
+        this.totalTV = this.findViewById(R.id.totalTV);
         this.qtyTV.setText("");
         this.currentQtyText = "";
     }
@@ -56,8 +60,24 @@ public class MainActivity extends AppCompatActivity
         //textView on the interface for the individual rolls approprately
         //as well as keep a running total and set that textView appropriately
         //as well.
-        //FINISH HW HERE!
+        int total = 0;
+        String individualRolls = "";
+        for(int i = 0; i < theRolls.length; i++)
+        {
+            theRolls[i] = r.nextInt(numberOfSidesInt)+1;
+            total = total + theRolls[i];
+            if(individualRolls.length() == 0)
+            {
+                individualRolls = "" + theRolls[i];
+            }
+            else
+            {
+                individualRolls = individualRolls + " + " + theRolls[i];
+            }
+        }
 
+        this.rollsTV.setText(individualRolls);
+        this.totalTV.setText("" + total);
     }
 
     public void diceButtonPressed(View v)
